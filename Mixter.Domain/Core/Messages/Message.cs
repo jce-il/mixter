@@ -54,6 +54,7 @@ namespace Mixter.Domain.Core.Messages
 
         public void Delete(IEventPublisher eventPublisher, UserId deleter)
         {
+            eventPublisher.Publish(new MessageDeleted(GetId()));
         }
 
         public MessageId GetId()
