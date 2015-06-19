@@ -14,6 +14,8 @@ namespace Mixter.Domain.Core.Messages.Handlers
 
         public void Handle(MessagePublished evt)
         {
+            TimelineMessageProjection projection = new TimelineMessageProjection(evt.Author, evt.Author, evt.Content, evt.Id);
+            _timelineMessagesRepository.Save(projection);
         }
 
         public void Handle(ReplyMessagePublished evt)
