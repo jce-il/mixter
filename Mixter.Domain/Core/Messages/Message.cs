@@ -54,9 +54,10 @@ namespace Mixter.Domain.Core.Messages
 
         public void Delete(IEventPublisher eventPublisher, UserId deleter)
         {
-            if (_projection.Publishers.Contains(deleter))
+            if (_projection.Publishers.Contains(deleter) && _projection.IsDeleted==false)
             {
-                eventPublisher.Publish(new MessageDeleted(GetId()));
+                MessageDeleted deletedMessageEvent = new MessageDeleted(_projection.Id);
+                PublishEvent(eventPublisher, deletedMessageEvent);
             }
         }
 
