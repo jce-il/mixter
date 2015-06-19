@@ -21,5 +21,11 @@ namespace Mixter.Domain.Core.Messages.Handlers
         public void Handle(ReplyMessagePublished evt)
         {
         }
+
+        private void Save(UserId ownerId, UserId authorId, string content, MessageId messageId)
+        {
+            var projection = new TimelineMessageProjection(ownerId, authorId, content, messageId);
+            _timelineMessagesRepository.Save(projection);
+        }
     }
 }
