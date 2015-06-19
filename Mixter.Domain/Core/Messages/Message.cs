@@ -77,6 +77,8 @@ namespace Mixter.Domain.Core.Messages
             }
 
             public bool IsDeleted { get; private set; }
+            
+            public UserId Author { get; private set; }
 
             public DecisionProjection()
             {
@@ -99,6 +101,7 @@ namespace Mixter.Domain.Core.Messages
             private void When(MessagePublished evt)
             {
                 Id = evt.Id;
+                Author = evt.Author;
                 _publishers.Add(evt.Author);
             }
 
