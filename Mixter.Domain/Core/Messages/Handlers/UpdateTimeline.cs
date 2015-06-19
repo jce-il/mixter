@@ -14,12 +14,12 @@ namespace Mixter.Domain.Core.Messages.Handlers
 
         public void Handle(MessagePublished evt)
         {
-            TimelineMessageProjection projection = new TimelineMessageProjection(evt.Author, evt.Author, evt.Content, evt.Id);
-            _timelineMessagesRepository.Save(projection);
+            Save(evt.Author, evt.Author, evt.Content, evt.Id);
         }
 
         public void Handle(ReplyMessagePublished evt)
         {
+            Save(evt.Replier, evt.Replier, evt.ReplyContent, evt.ReplyId);
         }
 
         private void Save(UserId ownerId, UserId authorId, string content, MessageId messageId)
