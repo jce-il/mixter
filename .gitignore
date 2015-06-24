@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+**/bin
+**/obj
+
+/packages
+
+*.user
+*.suo
+
+/_NCrunch_Mixter
+*.ncrunchsolution
+*.ncrunchproject
