@@ -24,12 +24,12 @@ namespace Mixter.Domain.Core.Messages.Handlers
 
         public void Handle(ReplyMessagePublished evt)
         {
-        }
+            UserId ownerId = evt.Replier;
+            UserId authorId = evt.Replier;
+            string content = evt.ReplyContent;
+            MessageId messageId = evt.ReplyId;
 
-        private void Save(UserId ownerId, UserId authorId, string content, MessageId messageId)
-        {
-            var projection = new TimelineMessageProjection(ownerId, authorId, content, messageId);
-            _timelineMessagesRepository.Save(projection);
+            _timelineMessagesRepository.Save(new TimelineMessageProjection(ownerId, authorId, content, messageId));
         }
     }
 }
