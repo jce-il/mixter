@@ -9,6 +9,8 @@ namespace Mixter.Domain.Core.Subscriptions
     {
         public static void FollowUser(IEventPublisher eventPublisher, UserId follower, UserId followee)
         {
+            SubscriptionId subId = new SubscriptionId(follower, followee);
+            eventPublisher.Publish(new UserFollowed(subId));
         }
     }
 }
