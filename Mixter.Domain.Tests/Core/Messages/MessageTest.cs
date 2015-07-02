@@ -81,5 +81,14 @@ namespace Mixter.Domain.Tests.Core.Messages
            
             Check.That(_eventPublisher.Events).ContainsExactly(new MessageDeleted(message.GetId()));
         }
+
+        [TestMethod]
+        public void WhenDeleteBySomeoneElseThanAuthorThenDoNotRaiseMessageDeleted()
+        {
+            var semeoneElseThanAuthor = new UserId("someone@mixit.fr");
+            var message = Message.Publish(new EventPublisher(), Author, MessageContent);
+            message.Delete(_eventPublisher, semeoneElseThanAuthor);
+            Check.That(_eventPublisher.Events).IsEmpty();
+        }
     }
 }
