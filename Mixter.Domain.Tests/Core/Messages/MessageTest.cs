@@ -78,6 +78,7 @@ namespace Mixter.Domain.Tests.Core.Messages
         {
             var message = Message.Publish(new EventPublisher(), Author, MessageContent);
             message.Delete(_eventPublisher, Author);
+           
             Check.That(_eventPublisher.Events).ContainsExactly(new MessageDeleted(message.GetId()));
         }
     }
