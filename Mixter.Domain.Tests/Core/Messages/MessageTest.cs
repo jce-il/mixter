@@ -77,7 +77,7 @@ namespace Mixter.Domain.Tests.Core.Messages
             });
         }
 
-        [TestMethod]
+        [TestMethod] 
         public void WhenDeleteThenRaiseMessageDeleted()
         {
             Given(new MessagePublished(MessageId, Author, MessageContent))
