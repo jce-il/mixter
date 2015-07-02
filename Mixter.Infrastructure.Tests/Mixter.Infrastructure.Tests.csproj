@@ -60,6 +60,7 @@
     <Compile Include="EventPublisherWithStorageTest.cs" />
     <Compile Include="EventsStoreTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TimelineMessagesRepositoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
