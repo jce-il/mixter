@@ -30,6 +30,7 @@ namespace Mixter.Domain.Core.Messages
 
         public void Republish(IEventPublisher eventPublisher, UserId republisher)
         {
+
             if (!_projection.Publishers.Contains(republisher) && !_projection.IsDeleted)
             {
                 var evt = new MessageRepublished(GetId(), republisher);
@@ -48,12 +49,16 @@ namespace Mixter.Domain.Core.Messages
             if (!_projection.IsDeleted)
             {
                 var evt = new ReplyMessagePublished(MessageId.Generate(), replier, replyContent, _projection.Id);
-                eventPublisher.Publish(evt);    
+                eventPublisher.Publish(evt);
             }
         }
 
         public void Delete(IEventPublisher eventPublisher, UserId deleter)
         {
+            if (_projection.Author.Equals(deleter) && !_projection.IsDeleted)
+            {
+                PublishEvent(eventPublisher, new MessageDeleted(_projection.Id));
+            }
         }
 
         public MessageId GetId()
@@ -73,6 +78,8 @@ namespace Mixter.Domain.Core.Messages
             }
 
             public bool IsDeleted { get; private set; }
+            
+            public UserId Author { get; private set; }
 
             public DecisionProjection()
             {
@@ -95,6 +102,7 @@ namespace Mixter.Domain.Core.Messages
             private void When(MessagePublished evt)
             {
                 Id = evt.Id;
+                Author = evt.Author;
                 _publishers.Add(evt.Author);
             }
 
