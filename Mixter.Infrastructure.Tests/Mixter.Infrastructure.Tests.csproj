@@ -55,10 +55,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Infrastructure\EventPublisherFake.cs" />
-    <Compile Include="Infrastructure\EventPublisherTest.cs" />
-    <Compile Include="Infrastructure\EventPublisherWithStorageTest.cs" />
-    <Compile Include="Infrastructure\EventsStoreTest.cs" />
+    <Compile Include="EventPublisherFake.cs" />
+    <Compile Include="EventPublisherTest.cs" />
+    <Compile Include="EventPublisherWithStorageTest.cs" />
+    <Compile Include="EventsStoreTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +73,9 @@
       <Project>{27059d26-d46b-4387-8f68-6c61d0591692}</Project>
       <Name>Mixter.Infrastructure</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Infrastructure\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
